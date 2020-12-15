@@ -3,6 +3,7 @@ import { MenuItem, FormControl, Select, Card, CardContent } from '@material-ui/c
 import InfoBox from './components/InfoBoxComponent';
 import Map from './components/MapComponent';
 import Table from './components/TableComponent';
+import LineGraph from './components/LineGraphComponent';
 import './App.css';
 import { sortData } from './util';
 
@@ -84,6 +85,7 @@ function App() {
           <Table countries={tableData} />
           {/* Table */}
           <h3>Worldwide new cases</h3>
+          <LineGraph />
           {/* Graph */}
         </CardContent>
       </Card>
