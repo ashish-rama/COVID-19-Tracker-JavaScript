@@ -6,7 +6,7 @@ import Table from './components/TableComponent';
 import LineGraph from './components/LineGraphComponent';
 import './App.css';
 import "leaflet/dist/leaflet.css";
-import { sortData } from './util';
+import { sortData, prettyPrintStat } from './util';
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -80,9 +80,9 @@ function App() {
       </div>
       
       <div className="app__stats">
-        <InfoBox title="Coronavirus Cases" cases={countryInfo.todayCases} total={countryInfo.cases}/>
-        <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered}/>
-        <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths}/>
+        <InfoBox title="Coronavirus Cases" cases={prettyPrintStat(countryInfo.todayCases)} total={prettyPrintStat(countryInfo.cases)}/>
+        <InfoBox title="Recovered" cases={prettyPrintStat(countryInfo.todayRecovered)} total={prettyPrintStat(countryInfo.recovered)}/>
+        <InfoBox title="Deaths" cases={prettyPrintStat(countryInfo.todayDeaths)} total={prettyPrintStat(countryInfo.deaths)}/>
       </div>
 
       {/* Map */}
