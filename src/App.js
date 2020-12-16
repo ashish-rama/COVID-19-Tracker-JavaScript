@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { MenuItem, FormControl, Select, Card, CardContent } from '@material-ui/core';
-import InfoBox from './components/InfoBoxComponent';
-import Map from './components/MapComponent';
-import Table from './components/TableComponent';
-import LineGraph from './components/LineGraphComponent';
+import InfoBox from './components/InfoBox/InfoBoxComponent';
+import Map from './components/Map/MapComponent';
+import Table from './components/Table/TableComponent';
+import LineGraph from './components/LineGraph/LineGraphComponent';
 import './App.css';
 import "leaflet/dist/leaflet.css";
 import { sortData, prettyPrintStat } from './util';
@@ -13,16 +13,20 @@ function App() {
   const [country, setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
-  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
-  const [mapZoom, setMapZoom] = useState(3);
+  const [mapCenter, setMapCenter] = useState({ lat: 20, lng: 0 });
+  const [mapZoom, setMapZoom] = useState(2);
   const [mapCountries, setMapCountries] = useState([]);
   const [casesType, setCasesType] = useState("cases");
+  const [latest, setLatest] = useState([]);
+
+  const lastUpdated = new Date(parseInt(latest.updated)).toString();
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
     .then(response => response.json())
     .then(data => {
       setCountryInfo(data);
+      setLatest(data);
     });
   }, []);
 
@@ -56,8 +60,8 @@ function App() {
       setCountry(countryCode);
       setCountryInfo(data);
 
-      setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-      setMapZoom(4);
+      setMapCenter(countryCode === "worldwide" ? { lat: 20, lng: 0 } : [data.countryInfo.lat, data.countryInfo.long]);
+      setMapZoom(countryCode === "worldwide" ? 2 : 4);
     })
   };
 
@@ -109,6 +113,7 @@ function App() {
         center={mapCenter}
         zoom={mapZoom}
       />
+      <p style={{color: "black", padding: "20px"}}>Last Updated: {lastUpdated}</p>
       </div>
       <Card className="app__right">
         <CardContent>

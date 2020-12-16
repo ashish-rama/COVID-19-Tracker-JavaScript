@@ -36,14 +36,14 @@ export const showDataOnMap = (data, casesType="cases") => (
 const casesTypeColors = {
     cases: {
       hex: "#CC1034",
-      multiplier: 800,
+      multiplier: 300,
     },
     recovered: {
       hex: "#7dd71d",
-      multiplier: 1200,
+      multiplier: 300,
     },
     deaths: {
       hex: "#fb4443",
-      multiplier: 2000,
+      multiplier: 300,
     },
 };
