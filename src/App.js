@@ -114,6 +114,7 @@ function App() {
         zoom={mapZoom}
       />
       <p style={{color: "black", padding: "20px"}}>Last Updated: {lastUpdated}</p>
+      <p style={{color: "black", padding: "20px"}}>Source code: <a href={"https://github.com/ashish-rama/COVID-19-Tracker-JavaScript"}>GitHub</a></p>
       </div>
       <Card className="app__right">
         <CardContent>
